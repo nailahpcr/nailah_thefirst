@@ -34,18 +34,18 @@ class PegawaiController extends Controller
             : "Jangan main-main, kurang-kurangi main game!";
 
         // Masukkan ke array data
-        $data['name']               = $name;
-        $data['my_age']             = $my_age;
-        $data['hobbies']            = $hobbies;
-        $data['tgl_harus_wisuda']   = $tgl_harus_wisuda->toDateString();
-        $data['time_to_study_left'] = $time_to_study_left;
-        $data['current_semester']   = $current_semester;
-        $data['semester_info']      = $semester_info;
-        $data['future_goal']        = $future_goal;
+        $data = [
+            'name'               => $name,
+            'my_age'             => $my_age,
+            'hobbies'            => $hobbies,
+            'tgl_harus_wisuda'   => $tgl_harus_wisuda->toDateString(),
+            'time_to_study_left' => $time_to_study_left,
+            'current_semester'   => $current_semester,
+            'semester_info'      => $semester_info,
+            'future_goal'        => $future_goal,
+        ];
 
-        // Kirim ke view (misalnya 'pegawai')
+        // Kirim ke view 'pegawai'
         return view('pegawai', $data);
     }
-
-    // function lain (create, store, dst.) bisa ditambahkan sesuai kebutuhan
 }
