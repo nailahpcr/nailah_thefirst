@@ -4,12 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 
 Route::get('/', function () {
-    return 'Selamat Datang di Website Kampus PCR!';
+    return view('welcome')
+;
 });
-
-//Route::get('/mahasiswa', function () {
-    //return 'Halo Mahasiswa';
-//});
+Route::get('/mahasiswa', function () {
+    return 'Halo Mahasiswa';
+});
 
 Route::get('/nama/{param1}', function ($param1) {
     return 'Nama saya: Nailah '.$param1;
