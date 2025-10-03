@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MahasiswaController extends Controller
+class QuestionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -27,20 +27,30 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        //dd($request->all())
 
+        $request->validate([
+		    'nama'  => 'required|max:10',
+		    'email' => ['required','email'],
+		    'pertanyaan' => 'required|max:300|min:8',
+		],[
+            'nama.required' => 'Nama wajib diisi',
+            'email.required' => 'Email wajib diisi',
+        ]
+);
+
+        $data['nama']   = $request->nama;
+        $data['email']  = $request->email;
+        $data['pertanyaan'] = $request->pertanyaan;
+        return view('home-question-respon', $data);
+
+    }
     /**
      * Display the specified resource.
      */
-    public function show(string $param1)
+    public function show(string $id)
     {
-        //return "Data mahasiswa: ".$param1;
-        if($param1 == 'detail'){
-            return view('halaman-mahasiswa-detail');
-        }else if($param1 == 'profil'){
-            return view('halaman-mahasiswa-profil');
-        }
+        //
     }
 
     /**

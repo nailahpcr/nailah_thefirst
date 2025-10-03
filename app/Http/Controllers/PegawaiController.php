@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class PegawaiController extends Controller
+//class PegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    //public function index()
     {
         // Data pegawai
         $name              = "Nailah Houra";
