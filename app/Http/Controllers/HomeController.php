@@ -13,7 +13,7 @@ class pegawaicontroller extends Controller
     {
 
         // Data tanggal lahir dan tanggal masuk
-        $tanggalLahir = new \DateTime('2006-08-05');
+        $tanggalLahir = new \DateTime('2006-09-05');
         $tanggalMasuk = new \DateTime('2022-01-10');
         $hariIni = new \DateTime();
 
