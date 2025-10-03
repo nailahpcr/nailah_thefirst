@@ -25,7 +25,7 @@ class pegawaicontroller extends Controller
 
         // Data pegawai yang sudah diperbarui
         $data_pegawai = [
-            'nama' => 'Vanesya Wilyan',
+            'nama' => 'NailahHoura',
             'tanggal_lahir' => '05 Agustus 2006',
             'umur' => $umur,
             'hobi' => [
