@@ -8,6 +8,8 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\AuthController;
+
 Route::get('/', function () {
    return view('welcome')
 ;
@@ -15,10 +17,6 @@ Route::get('/', function () {
 Route::get('/mahasiswa', function () {
     return 'Halo Mahasiswa';
 });
-
- Route::get('/nama/{param1?}', function ($param1) {
-     return 'Nama saya: Nailah '.$param1;
- })->name('mahasiswa.show');
 
 Route::get('/nim/{param1?}', function ($param1 = '') {
    // return 'NIM saya: '.$param1;
@@ -45,5 +43,8 @@ Route::get('/dashboard',[DashboardController::class,'index'])
     ->name('dashboard');
 
 Route::resource('pelanggan', PelangganController::class);
-
 Route::resource('user', UserController::class);
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('auth/logout', [AuthController::class, 'logout'])->name('auth.logout');

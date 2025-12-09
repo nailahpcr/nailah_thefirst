@@ -41,6 +41,8 @@
                                     <th class="border-0">Nama lengkap</th>
                                     <th class="border-0">Email</th>
                                     <th class="border-0">Password</th>
+                                    {{-- 1. Tambahkan Header Role di sini --}}
+                                    <th class="border-0">Role</th>
                                     <th class="border-0 rounded-end">Action</th>
                                 </tr>
                             </thead>
@@ -49,12 +51,24 @@
                                     <tr>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
+                                        {{-- Catatan: Sebaiknya password tidak ditampilkan di table untuk keamanan --}}
                                         <td>{{ $item->password }}</td>
+                                        
+                                        {{-- 2. Tambahkan Data Role di sini --}}
+                                        <td>
+                                            {{-- Opsional: Tambahkan badge warna agar lebih rapi --}}
+                                            @if($item->role == 'Super Admin')
+                                                <span class="badge bg-primary">{{ $item->role }}</span>
+                                            @elseif($item->role == 'Mitra')
+                                                <span class="badge bg-warning text-dark">{{ $item->role }}</span>
+                                            @else
+                                                <span class="badge bg-info text-dark">{{ $item->role }}</span>
+                                            @endif
+                                        </td>
 
                                         <td>
                                             {{-- ini edit --}}
-                                            <a href=""
-                                                class="btn btn-info btn-sm">
+                                            <a href="" class="btn btn-info btn-sm">
                                                 <svg class="icon icon-xs me-2" data-slot="icon" fill="none"
                                                     stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"
                                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -63,10 +77,8 @@
                                                     </path>
                                                 </svg>
                                                 Edit
-
                                             </a>
-                                            <form action=""
-                                                method="POST" style="display:inline">
+                                            <form action="" method="POST" style="display:inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">
@@ -83,7 +95,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
                     </div>

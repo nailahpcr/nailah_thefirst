@@ -27,20 +27,24 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        {
-            $data['name']                  = $request->name;
-            $data['email']                 = $request->email;
-            $data['password']              = Hash::make($request->password);
-            $data['password_confirmation'] = $request->password_confirmation;
+   public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users',
+        'password' => 'required',
+        'role' => 'required', // <--- Pastikan ini ada
+    ]);
 
-            User::create($data);
+    User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'role' => $request->role, // <--- WAJIB ADA: Tanpa ini, role tidak akan tersimpan!
+    ]);
 
-            return redirect()->route('user.index')->with('success', 'Penambahan Data Berhasil!');
-        }
-    }
-
+    return redirect()->route('user.index');
+}
     /**
      * Display the specified resource.
      */
@@ -60,11 +64,21 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+  public function update(Request $request, string $id)
+{
+    $user = User::findOrFail($id);
+    
+    // ... validasi kode ...
 
+    $user->update([
+        'name' => $request->name,
+        'email' => $request->email,
+        'role' => $request->role, // <--- WAJIB ADA
+        // ... password logic ...
+    ]);
+
+    return redirect()->route('user.index');
+}
     /**
      * Remove the specified resource from storage.
      */
